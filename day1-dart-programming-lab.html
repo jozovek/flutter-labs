@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dart Programming Lab</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .ga-logo {
+            width: 50px;
+            height: 50px;
+            background-color: #ED1C24;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .header {
+            background-color: #2A2D34;
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .exercise {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .code {
+            font-family: monospace;
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+        .setup-instructions {
+            border-left: 4px solid #ED1C24;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+        .solution {
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #f0f9f0;
+        }
+        .why-section {
+            background-color: #e3f2fd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="ga-logo"></div>
+        <h1>Dart Programming Lab</h1>
+    </div>
+
+    <h2>About</h2>
+    <p>In this lab, you'll practice fundamental Dart programming concepts that are essential for Flutter development. Each exercise is designed to reinforce concepts from the morning's lecture and demonstrate their practical application in Flutter app development.</p>
+
+    <h2>Setup</h2>
+    <div class="setup-instructions">
+        <ol>
+            <li>Open DartPad (https://dartpad.dev)</li>
+            <li>Create a new Dart file</li>
+            <li>Follow the exercises below</li>
+        </ol>
+    </div>
+
+    <h3>Exercise 1: Variables and Types</h3>
+    <div class="exercise">
+        <div class="why-section">
+            <h4>Why This Matters</h4>
+            <p>Understanding Dart's type system is crucial for Flutter development because:</p>
+            <ul>
+                <li>Flutter widgets often require specific types for their properties</li>
+                <li>Type safety helps catch errors before runtime, improving app stability</li>
+                <li>Proper use of const can optimize Flutter's performance by allowing widget reuse</li>
+            </ul>
+        </div>
+
+        <h4>Task</h4>
+        <p>Create variables of different types and practice type inference.</p>
+        <div class="code">
+            // 1. Create variables using var, final, and const
+            // 2. Practice with different data types (int, double, String, bool)
+            // 3. Use type inference and explicit typing
+            
+            void main() {
+                // Your code here
+                // Example:
+                var name = 'John';
+                final age = 25;
+                const isStudent = true;
+            }
+        </div>
+        
+        <div class="solution">
+            <h4>Solution</h4>
+            <div class="code">
+void main() {
+    // Using var for type inference
+    var name = 'Alice';  // Dart infers String type
+    var score = 95;      // Dart infers int type
+    
+    // Using explicit types
+    String country = 'USA';
+    int population = 331000000;
+    
+    // Using final for values that won't change after initialization
+    final DateTime currentTime = DateTime.now();
+    final double pi = 3.14159;
+    
+    // Using const for compile-time constants
+    const bool isProduction = false;
+    const double gravity = 9.81;
+    
+    // Printing values to verify
+    print('Name: $name');
+    print('Score: $score');
+    print('Country: $country');
+    print('Current Time: $currentTime');
+    print('Is Production: $isProduction');
+}
+            </div>
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li><code>var</code> lets Dart infer the type, useful for local variables</li>
+                <li><code>final</code> is used for values that won't change but are computed at runtime</li>
+                <li><code>const</code> is for compile-time constants, which Flutter can optimize</li>
+                <li>Explicit types improve code readability and self-documentation</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Exercise 2: Functions and Null Safety</h3>
+    <div class="exercise">
+        <div class="why-section">
+            <h4>Why This Matters</h4>
+            <p>Null safety and proper function design are critical in Flutter because:</p>
+            <ul>
+                <li>Flutter's widget constructors heavily use named parameters</li>
+                <li>Null safety prevents common runtime errors in your Flutter apps</li>
+                <li>Understanding parameter types helps when working with Flutter's widget callbacks</li>
+            </ul>
+        </div>
+
+        <h4>Task</h4>
+        <p>Create functions with different parameter types and return values, implementing null safety.</p>
+        <div class="code">
+            // Create these functions:
+            // 1. A function that takes nullable parameters
+            // 2. A function with named parameters
+            // 3. A function with required parameters
+        </div>
+
+        <div class="solution">
+            <h4>Solution</h4>
+            <div class="code">
+// Function with nullable parameter and return type
+String? getNullableName(String? input) {
+    // Using null-aware operator
+    return input?.toUpperCase();
+}
+
+// Function with named parameters (common in Flutter widgets)
+double calculateArea({
+    required double width,
+    required double height,
+    double scale = 1.0  // Optional parameter with default value
+}) {
+    return width * height * scale;
+}
+
+// Function with mixed parameter types
+void displayUserInfo({
+    required String name,
+    int? age,
+    String title = 'User'
+}) {
+    print('$title: $name');
+    if (age != null) {
+        print('Age: $age');
+    }
+}
+
+void main() {
+    // Testing the functions
+    print(getNullableName('john'));  // Prints: JOHN
+    print(getNullableName(null));    // Prints: null
+    
+    print(calculateArea(width: 10, height: 20));  // Prints: 200.0
+    
+    displayUserInfo(
+        name: 'Alice',
+        age: 30,
+        title: 'Admin'
+    );
+}
+            </div>
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li>Nullable types (String?) allow variables to hold null values</li>
+                <li>Named parameters with required keyword prevent null errors</li>
+                <li>Default parameter values provide flexibility</li>
+                <li>Null-aware operators (?.) safely handle potential null values</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Exercise 3: Classes and Objects</h3>
+    <div class="exercise">
+        <div class="why-section">
+            <h4>Why This Matters</h4>
+            <p>Object-oriented programming is fundamental to Flutter because:</p>
+            <ul>
+                <li>Every Flutter widget is a class</li>
+                <li>Custom widgets are created by extending Flutter's widget classes</li>
+                <li>State management often involves creating model classes</li>
+            </ul>
+        </div>
+
+        <h4>Task</h4>
+        <p>Create a Person class with properties and methods.</p>
+        <div class="code">
+            class Person {
+                // 1. Add properties (name, age, email)
+                // 2. Create a constructor
+                // 3. Add methods
+                // 4. Implement toString()
+            }
+        </div>
+
+        <div class="solution">
+            <h4>Solution</h4>
+            <div class="code">
+class Person {
+    // Properties
+    final String name;
+    final int age;
+    String? email;  // Nullable property
+    
+    // Constructor with named parameters
+    Person({
+        required this.name,
+        required this.age,
+        this.email,
+    });
+    
+    // Named constructor
+    Person.guest() : 
+        name = 'Guest',
+        age = 0;
+    
+    // Method to check if person is adult
+    bool isAdult() => age >= 18;
+    
+    // Method to update email
+    void updateEmail(String newEmail) {
+        email = newEmail;
+    }
+    
+    // Override toString method
+    @override
+    String toString() {
+        return 'Person(name: $name, age: $age, email: $email)';
+    }
+}
+
+void main() {
+    // Create person instances
+    final person1 = Person(
+        name: 'John Doe',
+        age: 30,
+        email: 'john@example.com'
+    );
+    
+    final guest = Person.guest();
+    
+    // Use methods
+    print(person1.toString());
+    print('Is adult? ${person1.isAdult()}');
+    
+    person1.updateEmail('newemail@example.com');
+    print(person1.toString());
+}
+            </div>
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li>Properties use final when they shouldn't change after initialization</li>
+                <li>Named constructors provide alternative ways to create objects</li>
+                <li>Required parameters ensure necessary data is provided</li>
+                <li>Methods encapsulate behavior, similar to widget methods in Flutter</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Level Up (Optional)</h3>
+    <div class="exercise">
+        <div class="why-section">
+            <h4>Why This Matters</h4>
+            <p>Advanced OOP concepts are essential in Flutter because:</p>
+            <ul>
+                <li>Flutter uses inheritance extensively (StatelessWidget, StatefulWidget)</li>
+                <li>Interfaces help define contracts for widget behavior</li>
+                <li>Abstract classes are common in Flutter's widget hierarchy</li>
+            </ul>
+        </div>
+
+        <h4>Inheritance and Interfaces</h4>
+        <p>Create a class hierarchy for different types of users in a system.</p>
+
+        <div class="solution">
+            <h4>Solution</h4>
+            <div class="code">
+// Interface for permissions
+abstract class Permissions {
+    bool canEdit();
+    bool canDelete();
+}
+
+// Abstract base class
+abstract class User {
+    final String id;
+    final String name;
+    
+    User(this.id, this.name);
+    
+    // Abstract method
+    void displayInfo();
+}
+
+// Student class implementing User
+class Student extends User implements Permissions {
+    final String grade;
+    
+    Student(String id, String name, this.grade) : super(id, name);
+    
+    @override
+    void displayInfo() {
+        print('Student: $name, Grade: $grade');
+    }
+    
+    @override
+    bool canEdit() => true;
+    
+    @override
+    bool canDelete() => false;
+}
+
+// Teacher class implementing User
+class Teacher extends User implements Permissions {
+    final List<String> subjects;
+    
+    Teacher(String id, String name, this.subjects) : super(id, name);
+    
+    @override
+    void displayInfo() {
+        print('Teacher: $name, Subjects: $subjects');
+    }
+    
+    @override
+    bool canEdit() => true;
+    
+    @override
+    bool canDelete() => true;
+}
+
+void main() {
+    final student = Student('S1', 'Alice', 'A');
+    final teacher = Teacher('T1', 'Mr. Smith', ['Math', 'Physics']);
+    
+    student.displayInfo();
+    print('Student can edit: ${student.canEdit()}');
+    
+    teacher.displayInfo();
+    print('Teacher can delete: ${teacher.canDelete()}');
+}
+            </div>
+            <p><strong>Explanation:</strong></p>
+            <ul>
+                <li>Abstract classes define a contract that child classes must fulfill</li>
+                <li>Interfaces (abstract classes in Dart) define a set of methods that classes must implement</li>
+                <li>Inheritance allows code reuse and polymorphism</li>
+                <li>This pattern is similar to how Flutter's widget system is designed</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 General Assembly</p>
+    </footer>
+</body>
+</html>
