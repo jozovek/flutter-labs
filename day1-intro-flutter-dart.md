@@ -3,7 +3,9 @@
 ## About
 This lesson introduces students to Flutter framework and the Dart programming language. Students will learn about the advantages of Flutter for cross-platform development and get hands-on experience with Dart's core concepts.
 
-## Flutter Architecture Overview
+## What is Flutter?
+
+Flutter is Google's UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase. Here's how Flutter's architecture enables this:
 
 ```mermaid
 graph TD
@@ -22,7 +24,15 @@ graph TD
     style H,I fill:#1e88e5
 ```
 
-## Widget Tree Concept
+### Key Features
+- **Hot Reload**: Make changes and see them instantly
+- **Single Codebase**: Write once, deploy everywhere
+- **Custom Widgets**: Build beautiful native interfaces
+- **High Performance**: Direct access to platform APIs
+
+## Understanding Widget Trees
+
+In Flutter, everything is a widget. Widgets form a hierarchy that describes your app's UI:
 
 ```mermaid
 graph TD
@@ -40,7 +50,9 @@ graph TD
     style F,G,H fill:#f44336
 ```
 
-## Development Environment Setup Flow
+## Development Environment Setup
+
+Follow these steps to set up your Flutter development environment:
 
 ```mermaid
 flowchart LR
@@ -57,6 +69,13 @@ flowchart LR
     style F fill:#43a047
 ```
 
+### Setup Steps
+1. Download Flutter SDK from flutter.dev
+2. Extract and add to PATH
+3. Install VS Code or Android Studio
+4. Install Flutter and Dart plugins
+5. Run `flutter doctor` to verify setup
+
 ## Course Schedule
 
 | Lesson | Time | Type | Skills |
@@ -70,54 +89,36 @@ flowchart LR
 | OOP Practice | 45 min | Code-Along | Building classes and implementing inheritance |
 | **Total Morning Content** | **3.5 hours** | | |
 
-## Dart Type System Overview
+## Introduction to Dart
 
-```mermaid
-classDiagram
-    class Object {
-        +toString() String
-        +hashCode int
-        +operator ==() bool
-    }
-    class num {
-        +operator +() num
-        +operator -() num
-    }
-    class int {
-        +operator >>() int
-        +operator <<() int
-    }
-    class double {
-        +toStringAsFixed() String
-        +roundToDouble() double
-    }
-    Object <|-- num
-    num <|-- int
-    num <|-- double
+Dart is a client-optimized language for fast apps on any platform. Key features include:
+
+### Variables and Types
+- Strong typing with type inference
+- `var`, `final`, and `const` keywords
+- Built-in types: `int`, `double`, `String`, `bool`, `List`, `Map`
+- Null safety with `?` and `!` operators
+
+### Functions
+```dart
+// Named parameters with null safety
+void printUserInfo({
+    required String name,
+    int? age,
+    String? email
+}) {
+    print('Name: $name');
+    if (age != null) print('Age: $age');
+    if (email != null) print('Email: $email');
+}
 ```
 
-## Object-Oriented Programming Concepts
-
-```mermaid
-classDiagram
-    class Widget {
-        +build() Widget
-        +createElement() Element
-    }
-    class StatelessWidget {
-        +build() Widget
-    }
-    class StatefulWidget {
-        +createState() State
-    }
-    class State {
-        +build() Widget
-        +setState() void
-    }
-    Widget <|-- StatelessWidget
-    Widget <|-- StatefulWidget
-    StatefulWidget -- State
-```
+### Object-Oriented Programming
+- Classes and objects
+- Inheritance and interfaces
+- Abstract classes and mixins
+- Factory constructors
+- Method overriding
 
 ## Level Up Content
 
@@ -126,42 +127,21 @@ classDiagram
 | Dart Async Programming | 30 min | Understanding Future, async/await, and Streams |
 | Flutter DevTools | 30 min | Using Flutter DevTools for debugging and performance optimization |
 
-## Async Programming Visualization
-
-```mermaid
-sequenceDiagram
-    participant App
-    participant Future
-    participant API
-    App->>Future: async call
-    Future->>API: request data
-    API-->>Future: return data
-    Future-->>App: complete with data
-    Note over App,API: Async operations don't block the main thread
+### Async Programming
+```dart
+// Example of async/await in Dart
+Future<String> fetchUserData() async {
+    final response = await http.get('api/user');
+    return response.body;
+}
 ```
 
-## Development Tools Ecosystem
-
-```mermaid
-mindmap
-    root((Flutter Dev Tools))
-        IDE Integration
-            VS Code
-            Android Studio
-            IntelliJ
-        Debugging
-            Hot Reload
-            Hot Restart
-            Break Points
-        Performance
-            CPU Profiler
-            Memory Profiler
-            Network Inspector
-        Widget Inspector
-            Widget Tree
-            Layout Explorer
-            Property Explorer
-```
+### DevTools Features
+- Widget Inspector
+- Performance Profiling
+- Memory Analysis
+- Network Monitoring
+- Source-level Debugger
 
 ## Key Takeaways
 
