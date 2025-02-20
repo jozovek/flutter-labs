@@ -1,0 +1,17 @@
+# Dart/Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+*.dart.js
+*.js_
+*.js.deps
+*.js.map
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+.DS_Store
